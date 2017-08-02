@@ -38,10 +38,22 @@ use \common\models\Adminuser;
 //    ->column();//column函数返回查询结果的第一列
 
     //方法四： 使用ActiveRecord的find方法，并使用QueryBuilder
-    $rows = Poststatus::find()
-    ->select(['name','id'])
-    ->indexBy('id')
-    ->column();
+//    $rows = Poststatus::find()
+//    ->select(['name','id'])
+//    ->indexBy('id')
+//    ->column();
+
+
+    //方法一：
+    //$rows = Poststatus::find()->all();
+//    $rows = ArrayHelper::map($rows,'id','name');
+
+    //方法二：Command
+    //$rows = Yii::$app->db->createCommand('select id,name from '.Poststatus::tableName())->queryAll();
+    //$rows = ArrayHelper::map($rows,'id','name');
+
+    //方法三：
+
     ?>
 
     <?= $form->field($model, 'status')->dropDownList($rows, ['prompt'=>'请选择状态']) ?>

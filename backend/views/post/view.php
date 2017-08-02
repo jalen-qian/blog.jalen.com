@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
 
-$this->title = $model->title;
+$this->title                   = $model->title;
 $this->params['breadcrumbs'][] = ['label' => '文章管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -18,28 +18,28 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('更新', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
-            'data' => [
+            'data'  => [
                 'confirm' => '您确定删除这篇文章?',
-                'method' => 'post',
+                'method'  => 'post',
             ],
         ]) ?>
     </p>
 
     <?= DetailView::widget([
-        'model' => $model,
+        'model'      => $model,
         'attributes' => [
             'id',
             'title',
-            'content:ntext',
+//            'content:ntext',
             'tags:ntext',
-            ['label'=>'状态','value'=>$model->status0->name],
-            ['label'=>'创建时间','value'=>date('Y-m-d H:i:s',$model->create_time)],
-            ['label'=>'更新时间','value'=>date('Y-m-d H:i:s',$model->update_time)],
-//            'create_time:datetime',
-//            'update_time:datetime',
-            ['label'=>'作者','value'=>$model->author->nickname],
+            ['attribute'=> 'status', 'value'=>$model->postStatus->name],
+            ['attribute'=> 'create_time', 'value'=> date('Y-m-d H:i:s', $model->create_time)],
+            ['attribute'=> 'update_time', 'value'=>date('Y-m-d H:i:s', $model->update_time)],
+            ['attribute'=> 'author_id', 'value'=>$model->author->nickname],
+            ['label'    => '测试', 'value'=>$model->aaa],
         ],
-        'template'=>'<tr><th style="width:120px;">{label}</th><td>{value}</td></tr>',
+        'template'=> '<tr><th style="width:120px;">{label}</th><td>{value}</td></tr>',
+        'options' => ['class'=>'table table-striped table-bordered detail-view'],
     ]) ?>
 
 </div>

@@ -1,33 +1,54 @@
 <?php
+
 namespace common\models;
 
 use Yii;
 use yii\base\Model;
 
 /**
- * Login form
+ * Login form.
  */
 class LoginForm extends Model
 {
     public $username;
     public $password;
+    public $email;
+    public $sex;
+    public $mood;
+    public $birthday;
     public $rememberMe = true;
 
     private $_user;
 
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password', 'email','mood','birthday'], 'required'],
+            //email must be an email address
+            ['email', 'email'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
+            ['mood', 'string', 'max'=>5],
+            ['birthday', 'date'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username'  => '用户名',
+            'password'  => '密码',
+            'email'     => '邮箱',
+            'sex'       => '性别',
+            'rememberMe'=> '记住我',
+            'birthday'  => '出生日期',
+            'mood'      => '心情',
         ];
     }
 
@@ -36,7 +57,7 @@ class LoginForm extends Model
      * This method serves as the inline validation for password.
      *
      * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
+     * @param array  $params    the additional name-value pairs given in the rule
      */
     public function validatePassword($attribute, $params)
     {
@@ -57,13 +78,13 @@ class LoginForm extends Model
     {
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
-     * Finds user by [[username]]
+     * Finds user by [[username]].
      *
      * @return User|null
      */

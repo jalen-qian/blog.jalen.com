@@ -32,20 +32,21 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-      //  $title = 'Yii2%';
+//        $title = 'Yii2%';
 //        $data = Yii::$app->db->createCommand("select * from post WHERE  title LIKE :title")
 //            ->bindParam(':title',$title)
 //            ->queryAll();
-//        var_dump($data);die;
+//        var_dump($data);
+//        var_dump(Yii::$app->db);die;
 
         //使用AR来查询数据
 //        $data = Post::find(['title'])->where(['AND',['status'=>2],['author_id'=>1],['like','title','Yii2']])
 //            ->orderBy('id')->all();
-//        var_dump($data);die;
+//        var_dump(Post::find(['title']));die;
         //$post = Post::find()->where(['status'=>2])->all();
-        $sql = "SELECT * FROM post WHERE status = :status";
-        $post = Post::findBySql($sql,[':status'=>2])->all();
-        var_dump($post);die;
+//        $sql = "SELECT * FROM post WHERE status = :status";
+//        $post = Post::findBySql($sql,[':status'=>2])->all();
+//        var_dump($post);die;
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
