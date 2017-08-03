@@ -78,8 +78,8 @@ class PostController extends Controller
         $model = new Post();
         //直接将当前时间赋值给模型对象，但是这样做有点不好
         //yii框架中，要求业务逻辑代码尽量不要写到控制器里面
-        $model->create_time = time();
-        $model->update_time = time();
+        /*$model->create_time = time();
+        $model->update_time = time();*/
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -98,7 +98,6 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->update_time  = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

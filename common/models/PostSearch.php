@@ -2,10 +2,8 @@
 
 namespace common\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Post;
 
 /**
  * PostSearch represents the model behind the search form about `common\models\Post`.
@@ -13,7 +11,7 @@ use common\models\Post;
 class PostSearch extends Post
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
@@ -24,7 +22,7 @@ class PostSearch extends Post
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -33,7 +31,7 @@ class PostSearch extends Post
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
      * @param array $params
      *
@@ -44,10 +42,19 @@ class PostSearch extends Post
         $query = Post::find();
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query'     => $query,
+            'pagination'=> [
+                'pageSize'=> 5,
+            ],
+            'sort'=>[
+                'defaultOrder'=>[
+                    'id'=>SORT_DESC
+                ],
+                
+            ]
         ]);
 
-        $this->load($params);
+        /*$this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -65,7 +72,7 @@ class PostSearch extends Post
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'tags', $this->tags]);
+            ->andFilterWhere(['like', 'tags', $this->tags]);*/
 
         return $dataProvider;
     }

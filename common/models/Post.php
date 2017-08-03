@@ -20,6 +20,8 @@ namespace common\models;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    private $oldTags;
+
     /**
      * {@inheritdoc}
      */
@@ -81,8 +83,54 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Poststatus::className(), ['id' => 'status']);
     }
-    
-    public function getAaa(){
+
+    /**
+     * @param bool $insert
+     *
+     * @return bool
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($insert) {
+            $this->create_time = time();
+            $this->update_time = time();
+        } else {
+            $this->update_time = time();
+        }
+
+        return true;
+    }
+
+    /**
+     * 重写.
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->oldTags = $this->tags;
+    }
+
+    /**
+     * @param bool  $insert
+     * @param array $changeAttributes
+     */
+    public function afterSave($insert, $changeAttributes)
+    {
+        parent::afterSave($insert, $changeAttributes);
+        Tag::updateFrequency($this->oldTags, $this->tags);
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        Tag::updateFrequency($this->tags, '');
+    }
+
+    public function getAaa()
+    {
         return 'aaabb';
     }
 }
