@@ -50,7 +50,7 @@ class PostSearch extends Post
                 'defaultOrder'=>[
                     'id'=>SORT_DESC
                 ],
-                
+                'attributes'=>['id','title']
             ]
         ]);
 
