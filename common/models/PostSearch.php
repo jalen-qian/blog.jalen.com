@@ -46,15 +46,15 @@ class PostSearch extends Post
             'pagination'=> [
                 'pageSize'=> 5,
             ],
-            'sort'=>[
-                'defaultOrder'=>[
-                    'id'=>SORT_DESC
+            'sort'=> [
+                'defaultOrder'=> [
+                    'id'=> SORT_DESC,
                 ],
-                'attributes'=>['id','title']
-            ]
+                'attributes'=> ['id', 'title'],
+            ],
         ]);
 
-        /*$this->load($params);
+        $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
@@ -63,16 +63,16 @@ class PostSearch extends Post
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'status' => $this->status,
+            'id'          => $this->id,
+            'status'      => $this->status,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
-            'author_id' => $this->author_id,
+            'author_id'   => $this->author_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'tags', $this->tags]);*/
+            ->andFilterWhere(['like', 'tags', $this->tags]);
 
         return $dataProvider;
     }
