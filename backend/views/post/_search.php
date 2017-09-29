@@ -14,8 +14,8 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
-    <?= $form->field($model, 'id') ?>
+    <div class="form-group">
+    <?= $form->field($model, 'id')->textInput(['class'=>'col-md-2 form-control']) ?>
 
     <?= $form->field($model, 'title') ?>
 
@@ -24,6 +24,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'tags') ?>
 
     <?= $form->field($model, 'status') ?>
+    </div>
 
     <?php // echo $form->field($model, 'create_time') ?>
 
@@ -32,8 +33,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'author_id') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('重置', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

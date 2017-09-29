@@ -51,6 +51,7 @@ class Post extends \yii\db\ActiveRecord
         return [
             'id'          => 'ID',
             'title'       => '标题',
+            'authorName'  => '作者',
             'content'     => '内容',
             'tags'        => '标签',
             'status'      => '状态',
@@ -59,6 +60,7 @@ class Post extends \yii\db\ActiveRecord
             'author_id'   => '作者',
         ];
     }
+    
 
     /**
      * @return \yii\db\ActiveQuery
@@ -129,8 +131,4 @@ class Post extends \yii\db\ActiveRecord
         Tag::updateFrequency($this->tags, '');
     }
 
-    public function getAaa()
-    {
-        return 'aaabb';
-    }
 }
