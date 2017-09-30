@@ -79,8 +79,8 @@ class PostSearch extends Post
         }
 
         $query->andFilterWhere([
-            'id'          => $this->id,
-            'status'      => $this->status,
+            'post.id'          => $this->id,
+            'post.status'      => $this->status,
             'create_time' => $this->create_time,
             'update_time' => $this->update_time,
             'author_id'   => $this->author_id,
@@ -92,6 +92,7 @@ class PostSearch extends Post
 
         $query->join('LEFT JOIN', 'adminuser', 'adminuser.id = post.author_id');
         $query->andFilterWhere(['like', 'adminuser.nickname', $this->authorName]);
+//        var_dump($query);die;
 
         //给作者列增加排序规则(方法2)
 //        var_dump($dataProvider->sort->attributes);die;

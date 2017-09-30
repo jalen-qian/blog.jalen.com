@@ -19,11 +19,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'content') ?>
+    <?= $form->field($model, 'authorName') ?>
 
     <?= $form->field($model, 'tags') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status')->dropDownList(
+        \common\models\Poststatus::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->column(), ['prompt'=>'请选择状态']) ?>
     </div>
 
     <?php // echo $form->field($model, 'create_time') ?>
