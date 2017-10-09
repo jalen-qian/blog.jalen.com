@@ -37,7 +37,7 @@ AppAsset::register($this);
     ]);
     //配置菜单
     $menuItems = [
-        ['label' => '文章管理', 'url' => ['/post/index']],
+        ['label' => '文章s管理', 'url' => ['/post/index']],
         ['label' => '评论管理', 'url' => ['/comment/index']],
         ['label' => '管理员', 'url' => ['/adminuser/index']],
         ['label' => '用户管理', 'url' => ['/user/index']],
@@ -48,7 +48,7 @@ AppAsset::register($this);
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '注销 (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

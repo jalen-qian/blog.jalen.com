@@ -61,7 +61,7 @@ class PostSearch extends Post
                     'id'=> SORT_DESC,
                 ],
                 //给nickName添加排序规则（方法一）
-                'attributes'=> ['id', 'title','authorName'=>[
+                'attributes'=> ['id', 'title', 'authorName'=>[
                     'asc'  => ['adminuser.nickname'=>SORT_ASC],
                     'desc' => ['adminuser.nickname'=>SORT_DESC],
                 ]],
@@ -81,9 +81,9 @@ class PostSearch extends Post
         $query->andFilterWhere([
             'post.id'          => $this->id,
             'post.status'      => $this->status,
-            'create_time' => $this->create_time,
-            'update_time' => $this->update_time,
-            'author_id'   => $this->author_id,
+            'create_time'      => $this->create_time,
+            'update_time'      => $this->update_time,
+            'author_id'        => $this->author_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

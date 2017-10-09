@@ -8,7 +8,7 @@ use yii\base\Model;
 /**
  * Login form.
  */
-class LoginForm extends Model
+class AdminLoginForm extends Model
 {
     public $username;
     public $password;
@@ -27,14 +27,8 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password',], 'required'],
-            //email must be an email address
-            ['email', 'email'],
-            // rememberMe must be a boolean value
+            [['username', 'password'], 'required'],
             ['rememberMe', 'boolean'],
-            ['mood', 'string', 'max'=>5],
-            ['birthday', 'date'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
@@ -44,11 +38,7 @@ class LoginForm extends Model
         return [
             'username'  => '用户名',
             'password'  => '密码',
-            'email'     => '邮箱',
-            'sex'       => '性别',
-            'rememberMe'=> '记住我',
-            'birthday'  => '出生日期',
-            'mood'      => '心情',
+            'rememberMe'=> '记住密码',
         ];
     }
 
@@ -91,7 +81,7 @@ class LoginForm extends Model
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = Adminuser::findByUsername($this->username);
         }
 
         return $this->_user;
